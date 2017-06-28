@@ -109,10 +109,28 @@ function myMap () {
     // Locations we show by default, in this case my favorite locations!
     locations = [
         {
-            title: 'Discovery Docks Apartments (Home)', location: {lat:51.501409, lng: -0.018823}
+            title: 'Discovery Docks Apartments', location: {lat:51.501409, lng: -0.018823}, type:'Living Quarters'
         },
         {
-            title: 'Nandos Restaurant', location: {lat:51.5023146, lng:-0.0187593}
+            title: 'Nandos Restaurant', location: {lat:51.5023146, lng:-0.0187593}, type:'Restaurant'
+        },
+        {
+            title: 'The Slug and Lettuce', location: {lat:51.5044416, lng:-0.0200729}, type:'Restaurant'
+        },
+        {
+            title: 'Canary Wharf Tube Station', location: {lat:51.5034898, lng:-0.0185944}, type: 'Transit'
+        },
+        {
+            title: 'One Canada Square', location: {lat:51.5049494, lng:-0.0194997}, type: 'Shopping'
+        },
+        {
+            title: 'Hamleys', location: {lat:51.5128012, lng:-0.140113}, type:'Shopping'
+        },
+        {
+            title: 'Burgeri', location: {lat:51.5142708, lng:-0.1396003}, type:'Restaurant'
+        },
+        {
+            title: 'Bond Street Station', location: {lat:51.5139532, lng:-0.1495572}, type: 'Transit'
         }
     ];
 
@@ -124,11 +142,13 @@ function myMap () {
         // Get the position from the location array.
         var position = locations[i].location;
         var title = locations[i].title;
+        var type = locations[i].type;
         // Create a marker per location, and put into markers array.
         var marker = new google.maps.Marker({
             map: map,
             position: position,
             title: title,
+            type: type,
             animation: google.maps.Animation.DROP,
             id: i
         });
@@ -151,7 +171,7 @@ function populateInfoWindow(marker, infowindow) {
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker != marker) {
       infowindow.marker = marker;
-      infowindow.setContent('<div>' + marker.title + '</div>');
+      infowindow.setContent('<div>' + marker.title + ' (' + marker.type + ')' + '</div>');
       infowindow.open(map, marker);
       // Make sure the marker property is cleared if the infowindow is closed.
       infowindow.addListener('closeclick',function(){
