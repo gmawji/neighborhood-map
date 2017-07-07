@@ -10,3 +10,19 @@
         margin-top: 15px;
     }
 }
+
+@media (max-width: 414px) {
+    .bootstrap-vertical-nav {
+        margin-top: 0;
+    }
+
+    .nav-separator {
+        margin: 0 0 0 0;
+    }
+}
+
+.nav-collapse {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: .7em;
+}

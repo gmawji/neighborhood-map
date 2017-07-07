@@ -28,14 +28,14 @@
 
             <div class="bootstrap-vertical-nav">
 
-                <button class="btn btn-primary hidden-md-up" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <span class="">Menu</span>
+                <button class="nav-collapse btn btn-primary hidden-md-up" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <span>Menu</span>
                 </button>
 
                 <div class="collapse" id="collapseExample">
                     <!-- Search Input -->
                     <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
-                    <hr>
+                    <hr class="nav-separator">
                     <!-- Locations Filter -->
                     <ul class="nav flex-column" id="exCollapsingNavbar3" data-bind="foreach: myLocationsFilter">
                         <li class="nav-item location-title" data-bind="text: title"></li>

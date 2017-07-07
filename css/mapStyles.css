@@ -23,3 +23,14 @@
     font-size: .9em;
     padding: 5px;
 }
+
+@media (max-width: 414px) {
+    .location-title {
+        font-size: .7em;
+    }
+
+    .search {
+        font-size: .7em;
+        margin-top: 5px;
+    }
+}
