@@ -9,3 +9,11 @@ body {
 #map {
     height: 100%;
 }
+
+.iw_title {
+    font-size: 1.3em;
+}
+
+.iw_subtitle {
+    font-size: 1em;
+}
