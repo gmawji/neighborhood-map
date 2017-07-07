@@ -32,6 +32,8 @@ var initialLocations = [
 ]
 
 var myMap = function(data) {
+    var self = this;
+
     this.title = data.title;
     this.lat = ko.observable(data.lat);
     this.lng = ko.observable(data.lng);
@@ -39,6 +41,13 @@ var myMap = function(data) {
 
     this.visible = ko.observable(true);
 
+    // Set InfoWindow and content
+    // TODO: Streamline the content, shouldn't be here
+    this.largeInfoWindow = new google.maps.InfoWindow(
+            {content: "<div>" + "<h4>" + data.title + "</h4>" + "<h5>" + data.type + "</h5>"}
+        );
+
+    // Google Maps marker setup
     this.marker = new google.maps.Marker({
             map: map,
             position: new google.maps.LatLng(data.lat, data.lng),
@@ -47,6 +56,7 @@ var myMap = function(data) {
             animation: google.maps.Animation.DROP
     });
 
+    // Show the markers
     this.showMarker = ko.computed(function() {
         if(this.visible() === true) {
             this.marker.setMap(map);
@@ -56,9 +66,24 @@ var myMap = function(data) {
         return true;
     }, this);
 
-    function setVisible(bool) {
-        this.visible = bool;
-    };
+    // Add Listener for marker click to open InfoWindow
+    this.marker.addListener('click', function() {
+        self.largeInfoWindow.open(map, this)
+    });
+
+    // Add Listener for marker to Animate once clicked
+    this.marker.addListener('click', function() {
+        if (self.marker.getAnimation() !== null) {
+            self.marker.setAnimation(null);
+        } else {
+            self.marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    });
+
+    // Add Listener for InfoWindow to kill animation when closed
+    this.largeInfoWindow.addListener('closeclick', function() {
+        self.marker.setAnimation(null);
+    });
 };
 
 function AppViewModel() {
