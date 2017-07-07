@@ -11,7 +11,7 @@
     }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 768px) {
     .bootstrap-vertical-nav {
         margin-top: 0;
     }

@@ -24,7 +24,7 @@
     padding: 5px;
 }
 
-@media (max-width: 414px) {
+@media (max-width: 768px) {
     .location-title {
         font-size: .7em;
     }
