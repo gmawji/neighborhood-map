@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Required meta tags always come first -->
     <meta charset="utf-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Canary Wharf - Neighborhood Map Project</title>
+
     <meta name="Neighborhood Map Project" content="Map of London(UK)">
     <meta name="Gulamabbas Mawji" content="SitePoint">
 
+    <title>Canary Wharf - Neighborhood Map Project</title>
+
+    <!-- Bootstrap 4 Alpha CSS(CDN) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
+    <!-- Bootstrap Vertical Nav CSS -->
+    <link rel="stylesheet" href="css/bootstrap-vertical-menu.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/mapStyles.css">
 </head>
 
 <body>
-    <!-- Map Content -->
-    <div id="sidebar">
-        <!-- Sidebar Content -->
-        <input id="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'">
-    </div>
-    <!-- Locations List -->
-    <div id="app">
-        <div id="list">
-            <ul id="results" data-bind="foreach: myLocationsFilter">
-                <li id="place" data-bind="text: title"></li>
-            </ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-lg-3 padding-sides-10">
+
+            <div class="bootstrap-vertical-nav">
+
+                <button class="btn btn-primary hidden-md-up" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <span class="">Menu</span>
+                </button>
+
+                <div class="collapse" id="collapseExample">
+                    <!-- Search Input -->
+                    <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
+                    <hr>
+                    <!-- Locations Filter -->
+                    <ul class="nav flex-column" id="exCollapsingNavbar3" data-bind="foreach: myLocationsFilter">
+                        <li class="nav-item location-title" data-bind="text: title"></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-8 col-lg-9 padding-zero">
+            <!-- Map Content -->
+            <div id="map">
+                <!-- Map -->
+            </div>
         </div>
     </div>
-    <div id="map">
-        <!-- Map -->
-    </div>
+</div>
 
     <script async defer
         src="js/knockout-3.4.2.js" type="text/javascript" charset="utf-8">
@@ -61,6 +83,20 @@
 
     <script async defer
         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function() {
+          function setHeight() {
+            windowHeight = $(window).innerHeight();
+            $('#map').css('min-height', windowHeight);
+          };
+          setHeight();
+
+          $(window).resize(function() {
+            setHeight();
+          });
+        });
     </script>
 </body>
 </html>

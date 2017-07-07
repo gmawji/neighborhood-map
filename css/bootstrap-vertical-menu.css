@@ -1,0 +1,12 @@
+/* Creates a vertical nav starting at 768px (sm) */
+@media (min-width: 768px) {
+    .bootstrap-vertical-nav .collapse {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .bootstrap-vertical-nav {
+        margin-top: 15px;
+    }
+}

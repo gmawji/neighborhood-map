@@ -1,19 +1,25 @@
-html,
-body {
-    font-family: Arial, sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#map {
-    height: 100%;
-}
-
 .iw_title {
     font-size: 1.3em;
 }
 
 .iw_subtitle {
     font-size: 1em;
+}
+
+.padding-zero {
+    padding: 0 0 0 0;
+}
+
+.padding-sides-10 {
+    padding: 0 10px 0 10px;
+}
+
+.search {
+    width: 100%;
+    font-size: .9em;
+}
+
+.location-title {
+    font-size: .9em;
+    padding: 5px;
 }
