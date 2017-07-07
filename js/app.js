@@ -1,7 +1,9 @@
 var myMap = function(data) {
     var self = this;
 
+    // Not an observable so filtering works
     this.title = data.title;
+
     this.lat = ko.observable(data.lat);
     this.lng = ko.observable(data.lng);
     this.type = ko.observable(data.type);
@@ -61,7 +63,7 @@ function AppViewModel() {
 
     var mapCanvas = document.getElementById('map');
     var mapOptions = {
-        center: new google.maps.LatLng(51.5014878, -0.0191633),
+        center: new google.maps.LatLng(51.4980479, -0.0105351),
         zoom: 15,
         styles: styles
     };
