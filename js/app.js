@@ -1,36 +1,3 @@
-var initialLocations = [
-    {
-        title: 'Discovery Docks Apartments',
-        lat: 51.501409,
-        lng:  -0.018823,
-        type: 'Living Quarters'
-    },
-    {
-        title: 'Nandos Restaurant',
-        lat: 51.5023146,
-        lng: -0.0187593,
-        type: 'Restaurant'
-    },
-    {
-        title: 'The Slug and Lettuce',
-        lat: 51.5044416,
-        lng: -0.0200729,
-        type: 'Restaurant'
-    },
-    {
-        title: 'Canary Wharf Tube Station',
-        lat: 51.5034898,
-        lng: -0.0185944,
-        type:  'Transit'
-    },
-    {
-        title: 'One Canada Square',
-        lat: 51.5049494,
-        lng: -0.0194997,
-        type:  'Shopping'
-    }
-]
-
 var myMap = function(data) {
     var self = this;
 
@@ -44,7 +11,7 @@ var myMap = function(data) {
     // Set InfoWindow and content
     // TODO: Streamline the content, shouldn't be here
     this.largeInfoWindow = new google.maps.InfoWindow(
-            {content: "<div>" + "<h4>" + data.title + "</h4>" + "<h5>" + data.type + "</h5>"}
+            {content: '<div>' + '<h4 class="iw_title">' + data.title + '</h4>' + '<h5 class="iw_subtitle">' + data.type + '</h5>'}
         );
 
     // Google Maps marker setup
