@@ -95,7 +95,8 @@ function AppViewModel() {
     var mapCanvas = document.getElementById('map');
     var mapOptions = {
         center: new google.maps.LatLng(51.5014878, -0.0191633),
-        zoom: 15
+        zoom: 15,
+        styles: styles
     };
     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(mapCanvas, mapOptions);
