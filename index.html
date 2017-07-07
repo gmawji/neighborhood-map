@@ -13,18 +13,31 @@
 
 <body>
     <!-- Map Content -->
+    <div id="sidebar">
+        <!-- Sidebar Content -->
+        <input id="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'">
+    </div>
+    <!-- Locations List -->
+    <div id="app">
+        <div id="list">
+            <ul id="results" data-bind="foreach: myLocationsFilter">
+                <li id="place" data-bind="text: title"></li>
+            </ul>
+        </div>
+    </div>
+    <div id="map">
+        <!-- Map -->
+    </div>
 
     <script async defer
-        src="/js/knockout-3.4.2.js" type="text/javascript" charset="utf-8">
+        src="js/knockout-3.4.2.js" type="text/javascript" charset="utf-8">
     </script>
 
     <script async defer
-        src="/js/app.js" type="text/javascript" charset="utf-8">
+        src="js/app.js" type="text/javascript" charset="utf-8">
     </script>
 
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing
-        &key=AIzaSyBRTschOElF6NRclmCZymKOoGb0jKlNtfU&v=3&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTschOElF6NRclmCZymKOoGb0jKlNtfU&callback=startApp&libraries=places">
     </script>
 </body>
 </html>
