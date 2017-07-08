@@ -1,5 +1,5 @@
 .app_title {
-    padding: 15px 5px 5px 15px;
+    padding: 15px 5px 10px 5px;
 }
 
 #sidebar {
@@ -11,6 +11,17 @@
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(255,255,255,1);
+}
+
+.location_list {
+    padding: 3px 5px 5px 5px;
+}
+
+.foursquare {
+    position: absolute;
+    bottom: 2px;
+    width: 60%;
+    right: 0;
 }
 
 .iw_title {

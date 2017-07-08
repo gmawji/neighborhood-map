@@ -14,9 +14,6 @@
     <!-- Bootstrap 4 Alpha CSS(CDN) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
-    <!-- Bootstrap Vertical Nav CSS -->
-    <link rel="stylesheet" href="css/bootstrap-vertical-menu.css">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/mapStyles.css">
 </head>
@@ -42,9 +39,9 @@
                 <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
                 <hr class="sidebar_hr">
                 <ul class="nav flex-column" data-bind="foreach: myLocationsFilter">
-                    <li class="nav-item" data-bind="text: title"></li>
+                    <li class="nav-item text-white location_list" data-bind="text: title"></li>
                 </ul>
-                <img src="img/foursquare_attr.png" alt="Powered By Foursquare!">
+                <img class="foursquare" src="img/foursquare_attr.png" srcset="img/foursquare_attr@2x.png" alt="Powered By Foursquare!">
             </div>
         </div>
     </div>
@@ -72,7 +69,7 @@
         src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
     </script>
 
-    <script async defer
+    <script async
         src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">
     </script>
 
