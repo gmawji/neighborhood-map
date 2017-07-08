@@ -39,7 +39,7 @@
                 <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
                 <hr class="sidebar_hr">
                 <ul class="nav flex-column" data-bind="foreach: myLocationsFilter">
-                    <li class="nav-item text-white location_list" data-bind="text: title"></li>
+                    <a href="#"><li class="nav-item text-white location_list" data-bind="text: title, click: bounce"></li></a>
                 </ul>
                 <img class="foursquare" src="img/foursquare_attr.png" srcset="img/foursquare_attr@2x.png" alt="Powered By Foursquare!">
             </div>

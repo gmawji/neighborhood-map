@@ -80,6 +80,10 @@ var myMap = function(data) {
         self.largeInfoWindow.open(map, this);
     });
 
+    this.bounce = function(i) {
+        google.maps.event.trigger(self.marker, 'click');
+    }
+
     // Add Listener for marker to Animate once clicked
     this.marker.addListener('click', function() {
         if (self.marker.getAnimation() !== null) {
