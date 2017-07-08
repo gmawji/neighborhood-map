@@ -61,3 +61,11 @@
         margin-top: 5px;
     }
 }
+
+.map_error {
+    color: white;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
