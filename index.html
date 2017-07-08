@@ -22,37 +22,31 @@
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 col-lg-3 padding-sides-10">
 
-            <div class="bootstrap-vertical-nav">
-
-                <button class="nav-collapse btn btn-primary hidden-md-up" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <span>Menu</span>
-                </button>
-
-                <div class="collapse" id="collapseExample">
-                    <!-- Search Input -->
-                    <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
-                    <hr class="nav-separator">
-                    <!-- Locations Filter -->
-                    <ul class="nav flex-column" id="exCollapsingNavbar3" data-bind="foreach: myLocationsFilter">
-                        <li class="nav-item location-title" data-bind="text: title"></li>
-                    </ul>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col p-0 navbar-inverse">
+                <a href class="float-right m-3 navbar-light" data-target="#sidebar" data-toggle="collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </a>
+                <div class="content bg-inverse">
+                    <!-- Map Content -->
+                    <div id="map">
+                        <!-- Map -->
+                    </div>
                 </div>
-
             </div>
-
-        </div>
-        <div class="col-md-8 col-lg-9 padding-zero">
-            <!-- Map Content -->
-            <div id="map">
-                <!-- Map -->
+            <div class="col-2 collapse bg-inverse pt-2 h-100" id="sidebar">
+                <h4 class="app_title text-white">Neighborhood Map</h4>
+                <!-- Search Input -->
+                <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
+                <hr class="sidebar_hr">
+                <ul class="nav flex-column" data-bind="foreach: myLocationsFilter">
+                    <li class="nav-item" data-bind="text: title"></li>
+                </ul>
             </div>
         </div>
     </div>
-</div>
 
     <script async defer
         src="js/knockout-3.4.2.js" type="text/javascript" charset="utf-8">
@@ -90,6 +84,7 @@
           function setHeight() {
             windowHeight = $(window).innerHeight();
             $('#map').css('min-height', windowHeight);
+            $('#sidebar').css('min-height', windowHeight);
           };
           setHeight();
 
