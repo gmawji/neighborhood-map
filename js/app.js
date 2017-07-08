@@ -111,8 +111,8 @@ function AppViewModel() {
     map = new google.maps.Map(mapCanvas, mapOptions);
 
     // Foursquare API Client
-    clientID = "2UDADLCH1QO1DNGF3KUBR2LNCRPQ4DTAQ2J1OMRVBTQOSQTS";
-    clientSecret = "ZRISSQUTM5CROUHAQ3X5OPLLXMEKBY0VKKIWV2R4QUJ4RKCZ";
+    clientID = "2G4BOAVMDDTBVKZOU0WI0IBXSQOCMDTIOWZCKXS4XO1RAC0R";
+    clientSecret = "3UZMRJ1XEB1WDHZROFUCCIGDJCFMWPVRG5J4FFDWVDNHEV4K";
 
     myLocations.forEach(function(myLocationItem){
         self.myLocationList.push( new myMap(myLocationItem));
