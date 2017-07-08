@@ -4,17 +4,22 @@ var myMap = function(data) {
     // Not an observable so filtering works
     this.title = data.title;
 
-    this.lat = ko.observable(data.lat);
-    this.lng = ko.observable(data.lng);
+    this.lat = data.lat;
+    this.lng = data.lng;
     this.type = ko.observable(data.type);
 
-    this.visible = ko.observable(true);
+    // Foursquare!
+    this.phone = '';
+    this.street = '';
+    this.city = '';
+    this.zip = '';
+    this.country = '';
+    this.category = '';
+    this.url = '';
 
-    // Set InfoWindow and content
-    // TODO: Streamline the content, shouldn't be here
-    this.largeInfoWindow = new google.maps.InfoWindow(
-            {content: '<div>' + '<h4 class="iw_title">' + data.title + '</h4>' + '<h5 class="iw_subtitle">' + data.type + '</h5>'}
-        );
+    this.cll = data.lat + "," + data.lng;
+
+    this.visible = ko.observable(true);
 
     // Google Maps marker setup
     this.marker = new google.maps.Marker({
@@ -35,9 +40,44 @@ var myMap = function(data) {
         return true;
     }, this);
 
+    // URL for Foursquare API
+    var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll='+ this.lat + ',' + this.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&query=' + this.title + '&v=20170708' + '&m=foursquare';
+    console.log(apiUrl);
+
+    // Foursquare API
+    $.getJSON(apiUrl).done(function(data) {
+        console.log('Success!');
+        var response = data.response.venues[0];
+        self.street = response.location.formattedAddress[0];
+        console.log(self.street);
+        self.city = response.location.formattedAddress[1];
+        console.log(self.city);
+        self.zip = response.location.formattedAddress[3];
+        console.log(self.zip);
+        self.country = response.location.formattedAddress[4];
+        console.log(self.country);
+        self.category = response.categories[0].shortName;
+        console.log(self.category);
+    }).fail(function() {
+        self.error = "There was an issue loading the Foursquare API. Pleasre refresh your page to try again."
+    })
+
+    // Set InfoWindow
+    this.largeInfoWindow = new google.maps.InfoWindow();
+
     // Add Listener for marker click to open InfoWindow
     this.marker.addListener('click', function() {
-        self.largeInfoWindow.open(map, this)
+        // Set infoWindow Content
+        self.infoWindowContent = '<div>' + '<h4 class="iw_title">' + data.title
+        + '</h4>' + '<h5 class="iw_subtitle">(' + self.category + ')</h5>'
+        + '<div>' + '<h6 class="iw_address_title"> Address: </h6>' + '<p class="iw_address">' + self.street + '</p>' + '<p class="iw_address">' + self.city + '</p>'
+        + '<p class="iw_address">' + self.zip + '</p>' + '<p class="iw_address">' + self.country + '</p>' + '</div>' +'</div>';
+
+        // Append content to infoWindow
+        self.largeInfoWindow.setContent(self.infoWindowContent);
+
+        // Open infoWindow
+        self.largeInfoWindow.open(map, this);
     });
 
     // Add Listener for marker to Animate once clicked
@@ -70,7 +110,11 @@ function AppViewModel() {
     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(mapCanvas, mapOptions);
 
-    initialLocations.forEach(function(myLocationItem){
+    // Foursquare API Client
+    clientID = "2UDADLCH1QO1DNGF3KUBR2LNCRPQ4DTAQ2J1OMRVBTQOSQTS";
+    clientSecret = "ZRISSQUTM5CROUHAQ3X5OPLLXMEKBY0VKKIWV2R4QUJ4RKCZ";
+
+    myLocations.forEach(function(myLocationItem){
         self.myLocationList.push( new myMap(myLocationItem));
     });
 
