@@ -1,3 +1,8 @@
+'use strict';
+
+// Global Variables
+var map, clientID, clientSecret
+
 var myMap = function(data) {
     var self = this;
 
@@ -15,7 +20,6 @@ var myMap = function(data) {
     this.zip = '';
     this.country = '';
     this.category = '';
-    this.url = '';
 
     this.cll = data.lat + "," + data.lng;
 
@@ -42,24 +46,23 @@ var myMap = function(data) {
 
     // URL for Foursquare API
     var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll='+ this.lat + ',' + this.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&query=' + this.title + '&v=20170708' + '&m=foursquare';
-    console.log(apiUrl);
 
-    // Foursquare API
+    // Foursquare API - Console.log commented out after implementation
     $.getJSON(apiUrl).done(function(data) {
-        console.log('Success!');
+        // console.log('Success!');
         var response = data.response.venues[0];
         self.street = response.location.formattedAddress[0];
-        console.log(self.street);
+        // console.log(self.street);
         self.city = response.location.formattedAddress[1];
-        console.log(self.city);
+        // console.log(self.city);
         self.zip = response.location.formattedAddress[3];
-        console.log(self.zip);
+        // console.log(self.zip);
         self.country = response.location.formattedAddress[4];
-        console.log(self.country);
+        // console.log(self.country);
         self.category = response.categories[0].shortName;
-        console.log(self.category);
+        // console.log(self.category);
     }).fail(function() {
-        self.error = "There was an issue loading the Foursquare API. Pleasre refresh your page to try again."
+        self.error = "There was an issue loading the Foursquare API. Please refresh your page to try again."
     })
 
     // Set InfoWindow
