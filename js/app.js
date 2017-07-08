@@ -62,7 +62,8 @@ var myMap = function(data) {
         self.category = response.categories[0].shortName;
         // console.log(self.category);
     }).fail(function() {
-        self.error = "There was an issue loading the Foursquare API. Please refresh your page to try again."
+        // Send alert
+        alert("There was an issue loading the Foursquare API. Please refresh your page to try again.");
     })
 
     // Set InfoWindow
