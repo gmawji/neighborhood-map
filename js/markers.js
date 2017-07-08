@@ -1,4 +1,4 @@
-var initialLocations = [
+var myLocations = [
     {
         title: 'Discovery Docks Apartments',
         lat: 51.501409,
@@ -70,11 +70,5 @@ var initialLocations = [
         lat: 51.505233,
         lng: -0.021716,
         type: 'Restaurant'
-    },
-    {
-        title: 'Heron Quays',
-        lat: 51.502996,
-        lng: -0.021565,
-        type: 'Transit'
     }
 ]
