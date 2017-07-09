@@ -30,7 +30,7 @@
                     <!-- Map Content -->
                     <div id="map">
                         <!-- Map -->
-                        <p class="map_error">Oops. Google Maps did not load. Please refresh the page and try again!</p>
+                        <p class="map_error"></p>
                     </div>
                 </div>
             </div>
@@ -47,50 +47,41 @@
         </div>
     </div>
 
-    <script async defer
-        src="js/knockout-3.4.2.js" type="text/javascript" charset="utf-8">
-    </script>
-
-    <script async defer
-        src="js/markers.js" type="text/javascript" charset="utf-8">
-    </script>
-
-    <script async defer
-        src="js/styles.js" type="text/javascript" charset="utf-8">
-    </script>
-
-    <script async defer
-        src="js/app.js" type="text/javascript" charset="utf-8">
-    </script>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTschOElF6NRclmCZymKOoGb0jKlNtfU&callback=startApp&libraries=places">
+    <script
+        src="js/knockout-3.4.2.js" charset="utf-8">
     </script>
 
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
     </script>
 
-    <script async
+    <script
         src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous">
     </script>
 
-    <script async defer
+    <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous">
     </script>
 
-    <script>
-        $(document).ready(function() {
-          function setHeight() {
-            windowHeight = $(window).innerHeight();
-            $('#map').css('min-height', windowHeight);
-            $('#sidebar').css('min-height', windowHeight);
-          };
-          setHeight();
+    <script
+        src="js/markers.js" charset="utf-8">
+    </script>
 
-          $(window).resize(function() {
-            setHeight();
-          });
-        });
+    <script
+        src="js/styles.js" charset="utf-8">
+    </script>
+
+    <script
+        src="js/app.js" charset="utf-8">
+    </script>
+
+    <script
+        src="js/manipulation.js" charset="utf-8">
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTschOElF6NRclmCZymKOoGb0jKlNtfU&callback=startApp&libraries=places"
+        onerror="googleError()">
     </script>
 </body>
 </html>

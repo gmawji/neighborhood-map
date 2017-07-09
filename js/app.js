@@ -1,7 +1,7 @@
 // Global Variables
 var map, clientID, clientSecret;
 
-var myMap = function(data) {
+var MyMap = function(data) {
     var self = this;
 
     // Not an observable so filtering works
@@ -36,6 +36,10 @@ var myMap = function(data) {
     this.showMarker = ko.computed(function() {
         if (this.visible() === true) {
             this.marker.setMap(map);
+            // Add Listener for marker click to open InfoWindow
+            this.marker.addListener('click', function () {
+                self.populateInfoWindow(this, self.largeInfoWindow);
+            });
         } else {
             this.marker.setMap(null);
         }
@@ -72,26 +76,35 @@ var myMap = function(data) {
     // Set InfoWindow
     this.largeInfoWindow = new google.maps.InfoWindow();
 
-    // Add Listener for marker click to open InfoWindow
-    this.marker.addListener('click', function() {
-        // Set infoWindow Content
-        self.infoWindowContent = '<div>' + '<h4 class="iw_title">' +
-            data.title +
-            '</h4>' + '<h5 class="iw_subtitle">(' + self.category +
-            ')</h5>' + '<div>' +
-            '<h6 class="iw_address_title"> Address: </h6>' +
-            '<p class="iw_address">' + self.street + '</p>' +
-            '<p class="iw_address">' + self.city + '</p>' +
-            '<p class="iw_address">' + self.zip + '</p>' +
-            '<p class="iw_address">' + self.country + '</p>' +
-            '</div>' + '</div>';
+    // This function populates the infowindow when the marker is clicked. We'll only allow
+    // one infowindow which will open at the marker that is clicked, and populate based
+    // on that markers position.
+    this.populateInfoWindow = function(marker, infowindow) {
+        if (infowindow.marker != marker) {
+            infowindow.marker = marker;
+            console.log(infowindow.marker);
 
-        // Append content to infoWindow
-        self.largeInfoWindow.setContent(self.infoWindowContent);
+            self.htmlContent = '<div>' + '<h4 class="iw_title">' +
+                data.title +
+                '</h4>' + '<h5 class="iw_subtitle">(' + self.category +
+                ')</h5>' + '<div>' +
+                '<h6 class="iw_address_title"> Address: </h6>' +
+                '<p class="iw_address">' + self.street + '</p>' +
+                '<p class="iw_address">' + self.city + '</p>' +
+                '<p class="iw_address">' + self.zip + '</p>' +
+                '<p class="iw_address">' + self.country + '</p>' +
+                '</div>' + '</div>';
 
-        // Open infoWindow
-        self.largeInfoWindow.open(map, this);
-    });
+            infowindow.setContent(self.htmlContent);
+
+            infowindow.open(map, marker);
+
+            infowindow.addListener('closeclick', function() {
+                infowindow.marker = null;
+                console.log(infowindow.marker);
+            });
+        }
+    };
 
     this.bounce = function(i) {
         google.maps.event.trigger(self.marker, 'click');
@@ -99,17 +112,20 @@ var myMap = function(data) {
 
     // Add Listener for marker to Animate once clicked
     this.marker.addListener('click', function() {
-        if (self.marker.getAnimation() !== null) {
-            self.marker.setAnimation(null);
-        } else {
-            self.marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
+        self.marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout((function() {
+            this.setAnimation(null);
+        }).bind(this), 2500)
     });
 
     // Add Listener for InfoWindow to kill animation when closed
     this.largeInfoWindow.addListener('closeclick', function() {
         self.marker.setAnimation(null);
     });
+
+    this.googleError = function googleError() {
+        alert('Oops. Google Maps did not load. Please refresh the page and try again!')
+    }
 };
 
 function AppViewModel() {
@@ -132,7 +148,7 @@ function AppViewModel() {
     clientSecret = "3UZMRJ1XEB1WDHZROFUCCIGDJCFMWPVRG5J4FFDWVDNHEV4K";
 
     myLocations.forEach(function(myLocationItem) {
-        self.myLocationList.push(new myMap(myLocationItem));
+        self.myLocationList.push(new MyMap(myLocationItem));
     });
 
     this.myLocationsFilter = ko.computed(function() {
