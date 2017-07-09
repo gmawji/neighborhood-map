@@ -115,7 +115,7 @@ var MyMap = function(data) {
         self.marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout((function() {
             this.setAnimation(null);
-        }).bind(this), 2500)
+        }).bind(this), 2500);
     });
 
     // Add Listener for InfoWindow to kill animation when closed
@@ -124,8 +124,8 @@ var MyMap = function(data) {
     });
 
     this.googleError = function googleError() {
-        alert('Oops. Google Maps did not load. Please refresh the page and try again!')
-    }
+        alert('Oops. Google Maps did not load. Please refresh the page and try again!');
+    };
 };
 
 function AppViewModel() {
