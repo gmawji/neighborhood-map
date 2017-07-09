@@ -1,7 +1,5 @@
-'use strict';
-
 // Global Variables
-var map, clientID, clientSecret
+var map, clientID, clientSecret;
 
 var myMap = function(data) {
     var self = this;
@@ -64,7 +62,7 @@ var myMap = function(data) {
     }).fail(function() {
         // Send alert
         alert("There was an issue loading the Foursquare API. Please refresh your page to try again.");
-    })
+    });
 
     // Set InfoWindow
     this.largeInfoWindow = new google.maps.InfoWindow();
@@ -72,10 +70,10 @@ var myMap = function(data) {
     // Add Listener for marker click to open InfoWindow
     this.marker.addListener('click', function() {
         // Set infoWindow Content
-        self.infoWindowContent = '<div>' + '<h4 class="iw_title">' + data.title
-        + '</h4>' + '<h5 class="iw_subtitle">(' + self.category + ')</h5>'
-        + '<div>' + '<h6 class="iw_address_title"> Address: </h6>' + '<p class="iw_address">' + self.street + '</p>' + '<p class="iw_address">' + self.city + '</p>'
-        + '<p class="iw_address">' + self.zip + '</p>' + '<p class="iw_address">' + self.country + '</p>' + '</div>' +'</div>';
+        self.infoWindowContent = '<div>' + '<h4 class="iw_title">' + data.title +
+        '</h4>' + '<h5 class="iw_subtitle">(' + self.category + ')</h5>' +
+        '<div>' + '<h6 class="iw_address_title"> Address: </h6>' + '<p class="iw_address">' + self.street + '</p>' + '<p class="iw_address">' + self.city + '</p>' +
+        '<p class="iw_address">' + self.zip + '</p>' + '<p class="iw_address">' + self.country + '</p>' + '</div>' +'</div>';
 
         // Append content to infoWindow
         self.largeInfoWindow.setContent(self.infoWindowContent);
@@ -86,7 +84,7 @@ var myMap = function(data) {
 
     this.bounce = function(i) {
         google.maps.event.trigger(self.marker, 'click');
-    }
+    };
 
     // Add Listener for marker to Animate once clicked
     this.marker.addListener('click', function() {
@@ -144,7 +142,7 @@ function AppViewModel() {
             });
         }
     }, self);
-};
+}
 
 function startApp() {
     ko.applyBindings(new AppViewModel());
