@@ -25,16 +25,16 @@ var myMap = function(data) {
 
     // Google Maps marker setup
     this.marker = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng(data.lat, data.lng),
-            title: data.title,
-            type: data.type,
-            animation: google.maps.Animation.DROP
+        map: map,
+        position: new google.maps.LatLng(data.lat, data.lng),
+        title: data.title,
+        type: data.type,
+        animation: google.maps.Animation.DROP
     });
 
     // Show the markers
     this.showMarker = ko.computed(function() {
-        if(this.visible() === true) {
+        if (this.visible() === true) {
             this.marker.setMap(map);
         } else {
             this.marker.setMap(null);
@@ -43,7 +43,10 @@ var myMap = function(data) {
     }, this);
 
     // URL for Foursquare API
-    var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll='+ this.lat + ',' + this.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&query=' + this.title + '&v=20170708' + '&m=foursquare';
+    var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll=' + this.lat +
+        ',' + this.lng + '&client_id=' + clientID + '&client_secret=' +
+        clientSecret + '&query=' + this.title + '&v=20170708' +
+        '&m=foursquare';
 
     // Foursquare API - Console.log commented out after implementation
     $.getJSON(apiUrl).done(function(data) {
@@ -61,7 +64,9 @@ var myMap = function(data) {
         // console.log(self.category);
     }).fail(function() {
         // Send alert
-        alert("There was an issue loading the Foursquare API. Please refresh your page to try again.");
+        alert(
+            "There was an issue loading the Foursquare API. Please refresh your page to try again."
+        );
     });
 
     // Set InfoWindow
@@ -70,10 +75,16 @@ var myMap = function(data) {
     // Add Listener for marker click to open InfoWindow
     this.marker.addListener('click', function() {
         // Set infoWindow Content
-        self.infoWindowContent = '<div>' + '<h4 class="iw_title">' + data.title +
-        '</h4>' + '<h5 class="iw_subtitle">(' + self.category + ')</h5>' +
-        '<div>' + '<h6 class="iw_address_title"> Address: </h6>' + '<p class="iw_address">' + self.street + '</p>' + '<p class="iw_address">' + self.city + '</p>' +
-        '<p class="iw_address">' + self.zip + '</p>' + '<p class="iw_address">' + self.country + '</p>' + '</div>' +'</div>';
+        self.infoWindowContent = '<div>' + '<h4 class="iw_title">' +
+            data.title +
+            '</h4>' + '<h5 class="iw_subtitle">(' + self.category +
+            ')</h5>' + '<div>' +
+            '<h6 class="iw_address_title"> Address: </h6>' +
+            '<p class="iw_address">' + self.street + '</p>' +
+            '<p class="iw_address">' + self.city + '</p>' +
+            '<p class="iw_address">' + self.zip + '</p>' +
+            '<p class="iw_address">' + self.country + '</p>' +
+            '</div>' + '</div>';
 
         // Append content to infoWindow
         self.largeInfoWindow.setContent(self.infoWindowContent);
@@ -120,21 +131,22 @@ function AppViewModel() {
     clientID = "2G4BOAVMDDTBVKZOU0WI0IBXSQOCMDTIOWZCKXS4XO1RAC0R";
     clientSecret = "3UZMRJ1XEB1WDHZROFUCCIGDJCFMWPVRG5J4FFDWVDNHEV4K";
 
-    myLocations.forEach(function(myLocationItem){
-        self.myLocationList.push( new myMap(myLocationItem));
+    myLocations.forEach(function(myLocationItem) {
+        self.myLocationList.push(new myMap(myLocationItem));
     });
 
-    this.myLocationsFilter = ko.computed( function() {
+    this.myLocationsFilter = ko.computed(function() {
         // Set filter input text to LowerCase to ensure it matches
         // no matter what case is entered
         var filter = self.searchOption().toLowerCase();
         if (!filter) {
-            self.myLocationList().forEach(function(myLocationItem){
+            self.myLocationList().forEach(function(myLocationItem) {
                 myLocationItem.visible(true);
             });
             return self.myLocationList();
         } else {
-            return ko.utils.arrayFilter(self.myLocationList(), function(myLocationItem) {
+            return ko.utils.arrayFilter(self.myLocationList(), function(
+                myLocationItem) {
                 var string = myLocationItem.title.toLowerCase();
                 var result = (string.search(filter) >= 0);
                 myLocationItem.visible(result);
