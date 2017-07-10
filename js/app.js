@@ -12,6 +12,7 @@ function AppViewModel() {
     // on that markers position.
     this.populateInfoWindow = function(marker, infowindow) {
         if (infowindow.marker != marker) {
+            infowindow.setContent('');
             infowindow.marker = marker;
             // Foursquare API Client
             clientID = "2G4BOAVMDDTBVKZOU0WI0IBXSQOCMDTIOWZCKXS4XO1RAC0R";
@@ -65,13 +66,7 @@ function AppViewModel() {
         this.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout((function() {
             this.setAnimation(null);
-        }).bind(this), 730);
-    };
-
-    this.googleError = function googleError() {
-        alert(
-            'Oops. Google Maps did not load. Please refresh the page and try again!'
-        );
+        }).bind(this), 1400);
     };
 
     this.initMap = function() {
@@ -128,6 +123,12 @@ function AppViewModel() {
         return result;
     }, this);
 }
+
+this.googleError = function googleError() {
+    alert(
+        'Oops. Google Maps did not load. Please refresh the page and try again!'
+    );
+};
 
 function startApp() {
     ko.applyBindings(new AppViewModel());
