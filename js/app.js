@@ -15,9 +15,13 @@ function AppViewModel() {
             infowindow.marker = marker;
             // Foursquare API Client
             clientID = "2G4BOAVMDDTBVKZOU0WI0IBXSQOCMDTIOWZCKXS4XO1RAC0R";
-            clientSecret = "3UZMRJ1XEB1WDHZROFUCCIGDJCFMWPVRG5J4FFDWVDNHEV4K";
+            clientSecret =
+                "3UZMRJ1XEB1WDHZROFUCCIGDJCFMWPVRG5J4FFDWVDNHEV4K";
             // URL for Foursquare API
-            var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll=' + marker.lat + ',' + marker.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&query=' + marker.title + '&v=20170708' + '&m=foursquare';
+            var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll=' +
+                marker.lat + ',' + marker.lng + '&client_id=' + clientID +
+                '&client_secret=' + clientSecret + '&query=' + marker.title +
+                '&v=20170708' + '&m=foursquare';
             // Foursquare API
             $.getJSON(apiUrl).done(function(marker) {
                 var response = marker.response.venues[0];
@@ -27,7 +31,15 @@ function AppViewModel() {
                 self.country = response.location.formattedAddress[4];
                 self.category = response.categories[0].shortName;
 
-                self.htmlContentFoursquare = '<h5 class="iw_subtitle">(' + self.category + ')</h5>' + '<div>' + '<h6 class="iw_address_title"> Address: </h6>' + '<p class="iw_address">' + self.street + '</p>' + '<p class="iw_address">' + self.city + '</p>' + '<p class="iw_address">' + self.zip + '</p>' + '<p class="iw_address">' + self.country + '</p>' + '</div>' + '</div>';
+                self.htmlContentFoursquare =
+                    '<h5 class="iw_subtitle">(' + self.category +
+                    ')</h5>' + '<div>' +
+                    '<h6 class="iw_address_title"> Address: </h6>' +
+                    '<p class="iw_address">' + self.street + '</p>' +
+                    '<p class="iw_address">' + self.city + '</p>' +
+                    '<p class="iw_address">' + self.zip + '</p>' +
+                    '<p class="iw_address">' + self.country +
+                    '</p>' + '</div>' + '</div>';
 
                 infowindow.setContent(self.htmlContent + self.htmlContentFoursquare);
             }).fail(function() {
@@ -37,7 +49,8 @@ function AppViewModel() {
                 );
             });
 
-            this.htmlContent = '<div>' + '<h4 class="iw_title">' + marker.title + '</h4>';
+            this.htmlContent = '<div>' + '<h4 class="iw_title">' + marker.title +
+                '</h4>';
 
             infowindow.open(map, marker);
 
@@ -47,7 +60,7 @@ function AppViewModel() {
         }
     };
 
-    this.populateAndBounceMarker = function () {
+    this.populateAndBounceMarker = function() {
         self.populateInfoWindow(this, self.largeInfoWindow);
         this.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout((function() {
@@ -56,10 +69,12 @@ function AppViewModel() {
     };
 
     this.googleError = function googleError() {
-        alert('Oops. Google Maps did not load. Please refresh the page and try again!');
+        alert(
+            'Oops. Google Maps did not load. Please refresh the page and try again!'
+        );
     };
 
-    this.initMap = function () {
+    this.initMap = function() {
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
             center: new google.maps.LatLng(51.4980479, -0.0105351),
@@ -78,7 +93,10 @@ function AppViewModel() {
             // Google Maps marker setup
             this.marker = new google.maps.Marker({
                 map: map,
-                position: {lat: this.markerLat, lng: this.markerLng},
+                position: {
+                    lat: this.markerLat,
+                    lng: this.markerLng
+                },
                 title: this.markerTitle,
                 lat: this.markerLat,
                 lng: this.markerLng,
@@ -99,7 +117,8 @@ function AppViewModel() {
         var result = [];
         for (var i = 0; i < this.markers.length; i++) {
             var markerLocation = this.markers[i];
-            if (markerLocation.title.toLowerCase().includes(this.searchOption().toLowerCase())) {
+            if (markerLocation.title.toLowerCase().includes(this.searchOption()
+                    .toLowerCase())) {
                 result.push(markerLocation);
                 this.markers[i].setVisible(true);
             } else {
