@@ -40,7 +40,7 @@
                 <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
                 <hr class="sidebar_hr">
                 <ul class="nav flex-column" data-bind="foreach: myLocationsFilter">
-                    <a href="#"><li class="nav-item text-white location_list" data-bind="text: title, click: bounce"></li></a>
+                    <a href="#"><li class="nav-item text-white location_list" data-bind="text: title, click: $parent.populateAndBounceMarker"></li></a>
                 </ul>
                 <img class="foursquare" src="img/foursquare_attr.png" srcset="img/foursquare_attr@2x.png" alt="Powered By Foursquare!">
             </div>
@@ -80,7 +80,7 @@
     </script>
 
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTschOElF6NRclmCZymKOoGb0jKlNtfU&callback=startApp&libraries=places"
+        src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBRTschOElF6NRclmCZymKOoGb0jKlNtfU&callback=startApp"
         onerror="googleError()">
     </script>
 </body>

@@ -12,12 +12,6 @@ var myLocations = [
         type: 'Restaurant'
     },
     {
-        title: 'The Slug and Lettuce',
-        lat: 51.5044416,
-        lng: -0.0200729,
-        type: 'Restaurant'
-    },
-    {
         title: 'Canary Wharf Tube Station',
         lat: 51.5034898,
         lng: -0.0185944,
