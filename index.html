@@ -22,7 +22,7 @@
 
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col p-0 navbar-inverse">
+            <main class="col p-0 navbar-inverse">
                 <a href class="float-right m-3 navbar-light" data-target="#sidebar" data-toggle="collapse">
                     <span class="navbar-toggler-icon"></span>
                 </a>
@@ -33,8 +33,8 @@
                         <p class="map_error"></p>
                     </div>
                 </div>
-            </div>
-            <div class="col-2 collapse bg-inverse pt-2 h-100 sidebar_width" id="sidebar">
+            </main>
+            <nav class="col-2 collapse bg-inverse pt-2 h-100 sidebar_width" id="sidebar">
                 <h4 class="app_title text-white">Neighborhood Map</h4>
                 <!-- Search Input -->
                 <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search Locations...">
@@ -43,7 +43,7 @@
                     <a href="#"><li class="nav-item text-white location_list" data-bind="text: title, click: $parent.populateAndBounceMarker"></li></a>
                 </ul>
                 <img class="foursquare" src="img/foursquare_attr.png" srcset="img/foursquare_attr@2x.png" alt="Powered By Foursquare!">
-            </div>
+            </nav>
         </div>
     </div>
 

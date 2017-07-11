@@ -124,7 +124,7 @@ function AppViewModel() {
     }, this);
 }
 
-this.googleError = function googleError() {
+googleError = function googleError() {
     alert(
         'Oops. Google Maps did not load. Please refresh the page and try again!'
     );
